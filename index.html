@@ -188,8 +188,317 @@ footer{text-align:center}
   <p>© <span id="year"></span> সর্বস্বত্ব সংরক্ষিত</p>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js";
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut
+} from "https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js";
+import {
+  getFirestore,
+  collection,
+  getDocs,
+  addDoc,
+  updateDoc,
+  deleteDoc,
+  doc,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyB3QDmQEizr_DG_2vu2PQvrRsdQJPhKn6g",
+  authDomain: "bhurka-sordarpara-cemetery.firebaseapp.com",
+  projectId: "bhurka-sordarpara-cemetery",
+  storageBucket: "bhurka-sordarpara-cemetery.firebasestorage.app",
+  messagingSenderId: "215677486915",
+  appId: "1:215677486915:web:4e1fb8be1af99e227691f6"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+const $ = id => document.getElementById(id);
+
+let currentUser = null;
+let people = [];
+
+$("year").textContent = new Date().getFullYear();
+
+function message(text) {
+  $("adminMessage").textContent = text;
+}
+
+function safeText(value) {
+  return value == null || value === ""
+    ? "তথ্য দেওয়া হয়নি"
+    : String(value);
+}
+
+function updateLoginView() {
+  $("loginBox").classList.toggle("hidden", !!currentUser);
+  $("adminBox").classList.toggle("hidden", !currentUser);
+
+  if (currentUser) {
+    $("email").value = "";
+    $("password").value = "";
+  }
+
+  renderList();
+}
+
+onAuthStateChanged(auth, user => {
+  currentUser = user;
+  updateLoginView();
+  loadPeople();
+});
+
+async function loadPeople() {
+  $("status").textContent = "তথ্য লোড হচ্ছে...";
+
+  try {
+    const snapshot = await getDocs(collection(db, "cemetery_people"));
+
+    people = snapshot.docs.map(item => ({
+      id: item.id,
+      ...item.data()
+    }));
+
+    people.sort((a, b) =>
+      (a.name || "").localeCompare(b.name || "", "bn")
+    );
+
+    $("status").textContent = people.length
+      ? "মোট রেকর্ড: " + people.length
+      : "এখনো কোনো তথ্য যোগ করা হয়নি।";
+
+    renderList();
+  } catch (error) {
+    console.error(error);
+    $("status").textContent =
+      "তথ্য লোড হয়নি। ইন্টারনেট ও Firestore Rules পরীক্ষা করুন।";
+  }
+}
+
+function renderList() {
+  const term = $("search").value.trim().toLocaleLowerCase();
+  const list = $("peopleList");
+  list.replaceChildren();
+
+  people
+    .filter(p => (p.name || "").toLocaleLowerCase().includes(term))
+    .forEach(p => {
+      const item = document.createElement("div");
+
+      const view = document.createElement("button");
+      view.type = "button";
+      view.className = "person";
+      view.textContent = p.name || "নাম দেওয়া হয়নি";
+      view.addEventListener("click", () => showDetails(p));
+      item.appendChild(view);
+
+      if (currentUser) {
+        const edit = document.createElement("button");
+        edit.type = "button";
+        edit.className = "btn";
+        edit.textContent = "সম্পাদনা";
+        edit.addEventListener("click", () => editPerson(p));
+        item.appendChild(edit);
+
+        const del = document.createElement("button");
+        del.type = "button";
+        del.className = "btn red";
+        del.textContent = "মুছুন";
+        del.addEventListener("click", () => deletePerson(p));
+        item.appendChild(del);
+      }
+
+      list.appendChild(item);
+    });
+}
+
+function showDetails(p) {
+  $("personTitle").textContent = p.name || "নাম দেওয়া হয়নি";
+  const rows = $("detailRows");
+  rows.replaceChildren();
+
+  const fields = [
+    ["পিতার নাম", p.father],
+    ["মাতা অথবা স্বামীর নাম", p.mother],
+    ["গ্রাম", p.village],
+    ["পোস্ট", p.post],
+    ["থানা/উপজেলা", p.thana],
+    ["জেলা", p.district],
+    ["জন্ম তারিখ", p.birth],
+    ["মৃত্যু তারিখ", p.death],
+    ["কবর নম্বর", p.grave],
+    ["অন্যান্য তথ্য", p.notes]
+  ];
+
+  fields.forEach(([label, value]) => {
+    const row = document.createElement("div");
+    row.className = "detail";
+
+    const strong = document.createElement("strong");
+    strong.textContent = label + ": ";
+
+    const span = document.createElement("span");
+    span.textContent = safeText(value);
+
+    row.append(strong, span);
+    rows.appendChild(row);
+  });
+
+  $("personDetails").classList.remove("hidden");
+}
+
+function editPerson(p) {
+  if (!currentUser) return;
+
+  $("editId").value = p.id;
+  $("pName").value = p.name || "";
+  $("pFather").value = p.father || "";
+  $("pMother").value = p.mother || "";
+  $("pVillage").value = p.village || "";
+  $("pPost").value = p.post || "";
+  $("pThana").value = p.thana || "";
+  $("pDistrict").value = p.district || "";
+  $("pBirth").value = p.birth || "";
+  $("pDeath").value = p.death || "";
+  $("pGrave").value = p.grave || "";
+  $("pNotes").value = p.notes || "";
+
+  $("personForm").scrollIntoView({ behavior: "smooth" });
+}
+
+function clearForm() {
+  $("personForm").reset();
+  $("editId").value = "";
+  $("pVillage").value = "সরদারপাড়া";
+  $("pPost").value = "মাঝডিয়াড়";
+  $("pThana").value = "দৌলতপুর";
+  $("pDistrict").value = "কুষ্টিয়া";
+}
+
+$("loginBtn").addEventListener("click", async () => {
+  const email = $("email").value.trim();
+  const password = $("password").value;
+
+  if (!email || !password) {
+    message("ইমেইল ও পাসওয়ার্ড লিখুন।");
+    return;
+  }
+
+  $("loginBtn").disabled = true;
+  message("লগইন হচ্ছে...");
+
+  try {
+    await signInWithEmailAndPassword(auth, email, password);
+    message("লগইন সফল হয়েছে।");
+  } catch (error) {
+    console.error(error);
+    const errors = {
+      "auth/invalid-credential": "ইমেইল বা পাসওয়ার্ড ভুল হয়েছে।",
+      "auth/invalid-email": "সঠিক ইমেইল লিখুন।",
+      "auth/too-many-requests": "অনেকবার চেষ্টা হয়েছে। পরে আবার চেষ্টা করুন।",
+      "auth/network-request-failed": "ইন্টারনেট সংযোগ পরীক্ষা করুন।"
+    };
+
+    message(errors[error.code] || "লগইন ব্যর্থ। Firebase Authentication পরীক্ষা করুন।");
+  } finally {
+    $("loginBtn").disabled = false;
+  }
+});
+
+$("personForm").addEventListener("submit", async event => {
+  event.preventDefault();
+
+  if (!auth.currentUser) {
+    message("প্রথমে অ্যাডমিন লগইন করুন।");
+    return;
+  }
+
+  const record = {
+    name: $("pName").value.trim(),
+    father: $("pFather").value.trim(),
+    mother: $("pMother").value.trim(),
+    village: $("pVillage").value.trim(),
+    post: $("pPost").value.trim(),
+    thana: $("pThana").value.trim(),
+    district: $("pDistrict").value.trim(),
+    birth: $("pBirth").value.trim(),
+    death: $("pDeath").value.trim(),
+    grave: $("pGrave").value.trim(),
+    notes: $("pNotes").value.trim()
+  };
+
+  if (!record.name) {
+    message("মৃত ব্যক্তির নাম লিখুন।");
+    return;
+  }
+
+  const id = $("editId").value;
+  const saveButton = $("personForm").querySelector('[type="submit"]');
+  saveButton.disabled = true;
+
+  try {
+    if (id) {
+      await updateDoc(doc(db, "cemetery_people", id), record);
+      message("তথ্য সম্পাদনা করা হয়েছে।");
+    } else {
+      await addDoc(collection(db, "cemetery_people"), {
+        ...record,
+        createdAt: serverTimestamp()
+      });
+      message("নতুন তথ্য সংরক্ষিত হয়েছে।");
+    }
+
+    clearForm();
+    $("personDetails").classList.add("hidden");
+    await loadPeople();
+  } catch (error) {
+    console.error(error);
+    message("সংরক্ষণ হয়নি। Firestore Rules ও সংযোগ পরীক্ষা করুন।");
+  } finally {
+    saveButton.disabled = false;
+  }
+});
+
+async function deletePerson(p) {
+  if (!auth.currentUser) {
+    message("প্রথমে অ্যাডমিন লগইন করুন।");
+    return;
+  }
+
+  if (!confirm('"' + p.name + '"-এর তথ্য মুছবেন?')) return;
+
+  try {
+    await deleteDoc(doc(db, "cemetery_people", p.id));
+    message("তথ্য মুছে ফেলা হয়েছে.");
+    $("personDetails").classList.add("hidden");
+    await loadPeople();
+  } catch (error) {
+    console.error(error);
+    message("তথ্য মোছা যায়নি। Firestore Rules পরীক্ষা করুন।");
+  }
+}
+
+$("clearBtn").addEventListener("click", clearForm);
+$("search").addEventListener("input", renderList);
+
+$("logoutBtn").addEventListener("click", async () => {
+  try {
+    await signOut(auth);
+    message("আপনি লগআউট করেছেন।");
+  } catch (error) {
+    console.error(error);
+    message("লগআউট করা যায়নি। আবার চেষ্টা করুন।");
+  }
+});
+</script>
+
 "use strict";
 
 // Supabase Dashboard থেকে এই দুটি মান বসান
