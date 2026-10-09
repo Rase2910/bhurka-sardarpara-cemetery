@@ -133,7 +133,84 @@ footer p { margin: 4px; }
   .hero { padding: 38px 18px; }
   .photo-frame { min-height: 160px; }
 }
-</style>
+</
+/* মৃত ব্যক্তিদের তালিকা */
+.deceased-search {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid #cbdacb;
+  border-radius: 9px;
+  font-size: 16px;
+  margin-bottom: 15px;
+  font-family: inherit;
+}
+
+.deceased-list {
+  display: grid;
+  gap: 10px;
+}
+
+.deceased-item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 14px 16px;
+  background: white;
+  border: 1px solid #dce8dc;
+  border-radius: 10px;
+  color: #124b32;
+  font-size: 17px;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.deceased-item:hover,
+.deceased-item.active {
+  background: #edf5ec;
+  border-color: #23734b;
+}
+
+.deceased-item span {
+  display: inline-block;
+  min-width: 42px;
+  font-weight: bold;
+  color: #23734b;
+}
+
+.deceased-details {
+  margin-top: 20px;
+  padding: 22px;
+  border-radius: 14px;
+  background: white;
+  border: 1px solid #dce8dc;
+}
+
+.deceased-details h3 {
+  color: #124b32;
+  margin-top: 0;
+}
+
+.detail-row {
+  padding: 8px 0;
+  border-bottom: 1px solid #edf1eb;
+  overflow-wrap: anywhere;
+}
+
+.detail-row:last-child {
+  border-bottom: none;
+}
+
+.detail-label {
+  font-weight: 700;
+  color: #124b32;
+}
+
+.empty-message {
+  color: #6b746c;
+  text-align: center;
+  padding: 15px;
+}
+style>
 </head>
 <body>
 
@@ -147,6 +224,7 @@ footer p { margin: 4px; }
     <a href="#about">পরিচিতি</a>
     <a href="#rules">নিয়মাবলি</a>
     <a href="#committee">কমিটি</a>
+    <a href="#deceased">মরহুমদের তালিকা</a>
     <a href="#contact">যোগাযোগ</a>
   </nav>
 </header>
@@ -236,6 +314,34 @@ footer p { margin: 4px; }
       <h2>যোগাযোগ ও ঠিকানা</h2>
       <p>কবরস্থানসংক্রান্ত তথ্যের জন্য</p>
     </div>
+  
+<section id="deceased">
+  <div class="section-head">
+    <h2>মরহুমদের তালিকা</h2>
+    <p>সিরিয়াল অনুযায়ী নাম দেখুন এবং বিস্তারিত তথ্য জানুন</p>
+  </div>
+
+  <div class="card">
+    <input
+      type="search"
+      id="deceasedSearch"
+      class="deceased-search"
+      placeholder="মৃত ব্যক্তির নাম লিখে খুঁজুন..."
+      aria-label="মৃত ব্যক্তির নাম খুঁজুন"
+    >
+
+    <div id="deceasedList" class="deceased-list"></div>
+
+    <div id="deceasedDetails" class="deceased-details" hidden>
+      <h3 id="detailName"></h3>
+      <div id="detailContent"></div>
+    </div>
+
+    <p id="deceasedMessage" class="empty-message" hidden>
+      কোনো নাম পাওয়া যায়নি।
+    </p>
+  </div>
+</section>
     <div class="contact">
       <h3>ভূরকা সরদারপাড়া কবরস্থান</h3>
       <p>ভুরকাপাড়া, মরিচা, দৌলতপুর, কুষ্টিয়া</p>
@@ -255,7 +361,136 @@ footer p { margin: 4px; }
 </footer>
 
 <script>
-document.getElementById("year").textContent = new Date().getFullYear();
+document.getElementById("
+document.getElementById("year").textContent =
+  new Date().getFullYear();
+
+// মৃত ব্যক্তিদের তথ্য এখানে যোগ করবেন
+const deceasedPeople = [
+  {
+    name: "আব্দুর রহিম",
+    father: "আব্দুল করিম",
+    mother: "মোছা. মোমেনা বেগম",
+    village: "সরদারপাড়া",
+    post: "মাঝডিয়াড়",
+    thana: "দৌলতপুর",
+    district: "কুষ্টিয়া",
+    birth: "১০/১২/১৯৭৮",
+    death: "২৩/০৯/২০১৯",
+    grave: "০০২",
+    notes: ""
+  },
+  {
+    name: "আব্দুর রহমান",
+    father: "তথ্য যোগ করুন",
+    mother: "তথ্য যোগ করুন",
+    village: "সরদারপাড়া",
+    post: "মাঝডিয়াড়",
+    thana: "দৌলতপুর",
+    district: "কুষ্টিয়া",
+    birth: "",
+    death: "",
+    grave: "০০৩",
+    notes: ""
+  }
+];
+
+const list = document.getElementById("deceasedList");
+const search = document.getElementById("deceasedSearch");
+const details = document.getElementById("deceasedDetails");
+const detailName = document.getElementById("detailName");
+const detailContent = document.getElementById("detailContent");
+const message = document.getElementById("deceasedMessage");
+
+function addDetail(label, value) {
+  const row = document.createElement("div");
+  row.className = "detail-row";
+
+  const heading = document.createElement("span");
+  heading.className = "detail-label";
+  heading.textContent = label + ": ";
+
+  const content = document.createElement("span");
+  content.textContent = value || "তথ্য দেওয়া হয়নি";
+
+  row.append(heading, content);
+  detailContent.appendChild(row);
+}
+
+function showDetails(person) {
+  detailName.textContent = person.name;
+  detailContent.replaceChildren();
+
+  addDetail("পিতার নাম", person.father);
+  addDetail("মাতার নাম", person.mother);
+  addDetail(
+    "ঠিকানা",
+    `গ্রাম: ${person.village || "উল্লেখ নেই"}, ` +
+    `পোস্ট: ${person.post || "উল্লেখ নেই"}, ` +
+    `থানা: ${person.thana || "উল্লেখ নেই"}, ` +
+    `জেলা: ${person.district || "উল্লেখ নেই"}`
+  );
+  addDetail("জন্ম তারিখ", person.birth);
+  addDetail("মৃত্যু তারিখ", person.death);
+  addDetail("কবর নম্বর", person.grave);
+
+  if (person.notes) {
+    addDetail("অন্যান্য তথ্য", person.notes);
+  }
+
+  details.hidden = false;
+
+  document.querySelectorAll(".deceased-item")
+    .forEach(button => {
+      button.classList.toggle(
+        "active",
+        button.dataset.personId === String(
+          deceasedPeople.indexOf(person)
+        )
+      );
+    });
+}
+
+function renderList() {
+  const keyword = search.value.trim().toLowerCase();
+
+  list.replaceChildren();
+  details.hidden = true;
+
+  const filtered = deceasedPeople
+    .map((person, index) => ({ person, index }))
+    .filter(({ person }) =>
+      person.name.toLowerCase().includes(keyword)
+    );
+
+  message.hidden = filtered.length > 0;
+
+  filtered.forEach(({ person, index }) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "deceased-item";
+    button.dataset.personId = String(index);
+
+    const serial = document.createElement("span");
+    serial.textContent =
+      String(index + 1).padStart(3, "0") + ".";
+
+    const name = document.createElement("span");
+    name.style.fontWeight = "normal";
+    name.textContent = person.name;
+
+    button.append(serial, name);
+    button.addEventListener("click", () => {
+      showDetails(person);
+    });
+
+    list.appendChild(button);
+  });
+}
+
+search.addEventListener("input", renderList);
+
+renderList();").textContent = new Date().getFullYear();
 </script>
 </body>
 </html>
