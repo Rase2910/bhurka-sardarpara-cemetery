@@ -214,14 +214,24 @@ function safeText(value) {
 }
 
 function setup() {
-  if (!window.supabase ||
-      SUPABASE_URL === "sb_publishable_AC6y86HGOpt8_HeDYamESw_GkSxgSYl"||
-      SUPABASE_ANON_KEY === "sb_secret_89D9gUVCgn40mLmJzKMO1g_Rh4-2pAL") {
+  
+  if (!window.supabase) {
     $("status").textContent =
-      "Supabase URL ও Publishable/anon key বসানোর পর তথ্য লোড হবে।";
+      "Supabase লাইব্রেরি লোড হয়নি। ইন্টারনেট সংযোগ পরীক্ষা করুন।";
     $("loginBtn").disabled = true;
     return;
   }
+
+  if (
+    SUPABASE_URL === "https://vbmhpeleurtpzctejbju.supabase.co" ||
+    SUPABASE_ANON_KEY === "sb_publishable_YCkxDwRnGdDrFexlgZPagA_wWdL_CNm" ||
+    !SUPABASE_URL.startsWith("https://")
+  ) {
+    $("status").textContent =
+      "Supabase URL ও Publishable Key সঠিকভাবে বসান।";
+    $("loginBtn").disabled = true;
+    return;
+   }
 
   db = window.supabase.createClient(
     SUPABASE_URL,
