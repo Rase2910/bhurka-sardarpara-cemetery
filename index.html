@@ -9,350 +9,277 @@
 
 <style>
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
 body{
-  margin:0;
+  margin:0;background:#fbfcf7;color:#25352a;
   font-family:"Noto Sans Bengali",Arial,sans-serif;
-  background:#fbfcf7;
-  color:#25352a;
   line-height:1.8
 }
-header{
-  background:#14532d;color:white;padding:16px 5%;
-  display:flex;align-items:center;justify-content:space-between;
-  flex-wrap:wrap;gap:12px
-}
-.brand{font-size:20px;font-weight:bold}
-.brand small{display:block;font-size:12px;font-weight:normal}
-nav{display:flex;gap:12px;flex-wrap:wrap}
-nav a{color:white;text-decoration:none;font-size:14px}
-nav a:hover{text-decoration:underline}
+header,footer{background:#14532d;color:white;padding:18px}
+header{text-align:center}
+nav{display:flex;justify-content:center;gap:15px;flex-wrap:wrap}
+nav a{color:white;text-decoration:none}
 .hero{
-  text-align:center;padding:45px 16px;
+  text-align:center;padding:38px 15px;
   background:linear-gradient(135deg,#dcefd9,#fffdf2)
 }
-.hero h1{font-size:clamp(27px,6vw,42px);color:#14532d;line-height:1.5}
-.hero p{max-width:680px;margin:10px auto 22px}
+h1,h2,h3{color:#14532d}
+.hero h1{font-size:clamp(26px,5vw,40px)}
+main{max-width:950px;margin:auto;padding:16px}
+section{padding:20px 0;scroll-margin-top:15px}
+.card{
+  background:white;border:1px solid #d8e6d8;
+  border-radius:12px;padding:18px;margin-bottom:14px
+}
 .btn{
-  display:inline-block;padding:9px 16px;border:0;border-radius:8px;
-  background:#14532d;color:white;text-decoration:none;
-  font:inherit;cursor:pointer;margin:3px
+  display:inline-block;border:0;border-radius:7px;
+  padding:10px 15px;background:#14532d;color:white;
+  text-decoration:none;cursor:pointer;font:inherit;margin:4px
 }
-.btn.light{background:white;color:#14532d;border:1px solid #d8e6d8}
-.btn.red{background:#a32626}
-main{max-width:1000px;margin:auto;padding:0 16px 35px}
-section{padding:28px 0;scroll-margin-top:15px}
-.heading{text-align:center;margin-bottom:20px}
-.heading h2{color:#14532d;margin:0;font-size:26px}
-.heading p{margin:5px 0;color:#627365}
-.banner{max-width:970px;margin:22px auto;padding:0 16px}
-.banner-inner{
-  background:linear-gradient(135deg,#d7e9d0,#a6c8a2);
-  color:#14532d;text-align:center;border-radius:14px;padding:30px 12px
+.red{background:#a32626}
+.field{
+  width:100%;padding:11px;margin:5px 0 12px;
+  border:1px solid #c7d8c7;border-radius:7px;font:inherit
 }
-.banner-inner strong{font-size:22px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
-.card{background:white;border:1px solid #d8e6d8;border-radius:12px;padding:18px}
-.card h3{color:#14532d;margin-top:0}
-.search,.field{
-  width:100%;padding:11px;border:1px solid #c7d8c7;
-  border-radius:8px;font:inherit;background:white;margin:5px 0 12px
+label{font-weight:bold;color:#14532d}
+.person{
+  width:100%;text-align:left;padding:12px;margin:4px 0;
+  border:1px solid #d8e6d8;border-radius:8px;
+  background:white;color:#14532d;font:inherit;cursor:pointer
 }
-.person-list{display:grid;gap:9px}
-.person-button{
-  width:100%;display:flex;align-items:center;gap:10px;padding:12px;
-  background:white;border:1px solid #d8e6d8;border-radius:9px;
-  text-align:left;font:inherit;color:#14532d;cursor:pointer
-}
-.person-button:hover,.person-button.active{background:#edf7ed;border-color:#14532d}
-.serial{font-weight:bold;min-width:36px}
-.person-name{font-weight:bold;flex:1}
-.details{
-  margin-top:18px;padding:18px;background:white;
-  border:1px solid #d8e6d8;border-radius:12px;overflow-wrap:anywhere
-}
-.details h3{color:#14532d;margin-top:0}
-.detail-row{padding:7px 0;border-bottom:1px solid #edf1eb}
-.detail-label{font-weight:bold;color:#14532d}
 .hidden{display:none!important}
-.admin{margin-top:25px;border-top:1px solid #d8e6d8;padding-top:18px}
-.admin summary{color:#14532d;font-weight:bold;font-size:18px;cursor:pointer}
-.admin-panel{margin-top:12px;padding:16px;background:#f0f6ed;border-radius:10px}
-.form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:0 12px}
-label{font-size:14px;color:#14532d;font-weight:bold}
+.detail{padding:8px 0;border-bottom:1px solid #eee}
+.notice{padding:10px;background:#edf7ed;border-radius:8px}
+footer{text-align:center}
 .small{font-size:13px;color:#627365}
-.contact{padding:22px;background:#edf7ed;border-radius:12px;text-align:center}
-footer{background:#103c28;color:#edf5ed;text-align:center;padding:22px 12px;font-size:14px}
-footer p{margin:4px}
-@media(max-width:600px){
-  header{justify-content:center;text-align:center}
-  nav{justify-content:center}
-  .hero{padding:30px 15px}
-}
 </style>
 </head>
 
 <body>
 <header>
-  <div class="brand">
-    ভূরকা সরদারপাড়া কবরস্থান
-    <small>ভুরকাপাড়া, মরিচা, দৌলতপুর, কুষ্টিয়া</small>
-  </div>
+  <h2 style="color:white;margin:0">ভূরকা সরদারপাড়া কবরস্থান</h2>
+  <div>ভুরকাপাড়া, মরিচা, দৌলতপুর, কুষ্টিয়া</div>
   <nav>
-    <a href="#home">হোম</a>
     <a href="#about">পরিচিতি</a>
-    <a href="#rules">নিয়মাবলি</a>
-    <a href="#committee">কমিটি</a>
-    <a href="#deceased">মরহুমদের তালিকা</a>
+    <a href="#people">মরহুমদের তালিকা</a>
     <a href="#contact">যোগাযোগ</a>
+    <a href="#admin">অ্যাডমিন</a>
   </nav>
 </header>
 
-<div class="hero" id="home">
-  <p>🌿 আমাদের এলাকার কবরস্থান</p>
+<div class="hero">
   <h1>ভূরকা সরদারপাড়া কবরস্থান</h1>
-  <p>কবরস্থানের মর্যাদা রক্ষা, পরিচ্ছন্নতা বজায় রাখা এবং সুন্দর ব্যবস্থাপনায় এলাকাবাসীর সম্মিলিত উদ্যোগ।</p>
-  <a class="btn" href="#about">কবরস্থান পরিচিতি</a>
-  <a class="btn light" href="#deceased">মরহুমদের তালিকা</a>
-</div>
-
-<div class="banner">
-  <div class="banner-inner">
-    <strong>🌿 ভূরকা সরদারপাড়া কবরস্থান</strong>
-    <p>কবরস্থানের পরিচিতি, তথ্য ও রক্ষণাবেক্ষণে এলাকাবাসীর সম্মিলিত উদ্যোগ।</p>
-  </div>
+  <p>কবরস্থানের মর্যাদা, পরিচ্ছন্নতা ও সুষ্ঠু ব্যবস্থাপনায় আমাদের সম্মিলিত উদ্যোগ।</p>
+  <a class="btn" href="#people">মরহুমদের তালিকা</a>
+  <a class="btn" target="_blank" rel="noopener"
+     href="https://www.google.com/maps?q=24.087004,88.916529">
+    📍 Google Maps
+  </a>
 </div>
 
 <main>
 <section id="about">
-  <div class="heading"><h2>কবরস্থান পরিচিতি</h2></div>
-  <div class="grid">
-    <div class="card">
-      <h3>📍 অবস্থান</h3>
-      <p>ভুরকাপাড়া, মরিচা, দৌলতপুর, কুষ্টিয়া।</p>
-    </div>
-    <div class="card">
-      <h3>🌱 পরিচ্ছন্নতা</h3>
-      <p>কবরস্থানের পরিবেশ পরিষ্কার ও সীমানা সুরক্ষিত রাখতে সহযোগিতা করুন।</p>
-    </div>
-    <div class="card">
-      <h3>🤝 সম্মিলিত উদ্যোগ</h3>
-      <p>কবরস্থানের উন্নয়ন ও রক্ষণাবেক্ষণে এলাকাবাসীর সহযোগিতা কাম্য।</p>
-    </div>
-  </div>
-</section>
-
-<section id="rules">
-  <div class="heading"><h2>কবরস্থানের নিয়মাবলি</h2></div>
   <div class="card">
-    <ul>
-      <li>কবরস্থানের পবিত্রতা ও মর্যাদা বজায় রাখুন।</li>
-      <li>যত্রতত্র ময়লা-আবর্জনা ফেলবেন না।</li>
-      <li>কবর ও সীমানার ক্ষতি করবেন না।</li>
-      <li>রক্ষণাবেক্ষণের বিষয়ে পরিচালনা কমিটির সঙ্গে যোগাযোগ করুন।</li>
-    </ul>
+    <h2>কবরস্থান পরিচিতি</h2>
+    <p>অবস্থান: ভুরকাপাড়া, মরিচা, দৌলতপুর, কুষ্টিয়া।</p>
+    <p>কবরস্থানের পরিবেশ পরিষ্কার রাখুন এবং সীমানার ক্ষতি থেকে বিরত থাকুন।</p>
   </div>
 </section>
 
-<section id="committee">
-  <div class="heading"><h2>পরিচালনা কমিটি</h2></div>
-  <div class="grid">
-    <div class="card">
-      <h3>সভাপতি</h3>
-      <p>নাম: পরে যোগ করুন</p>
-    </div>
-    <div class="card">
-      <h3>সাধারণ সম্পাদক</h3>
-      <p>নাম: পরে যোগ করুন</p>
-    </div>
-  </div>
-</section>
-
-<section id="deceased">
-  <div class="heading">
+<section id="people">
+  <div class="card">
     <h2>মরহুমদের তালিকা</h2>
-    <p>নাম খুঁজুন। বিস্তারিত জানতে নামের ওপর চাপ দিন।</p>
-  </div>
-
-  <div class="card">
-    <input id="search" class="search" type="search"
-           placeholder="মৃত ব্যক্তির নাম লিখুন..." aria-label="নাম দিয়ে খুঁজুন">
-
-    <div id="peopleList" class="person-list"></div>
-    <p id="noResults" class="hidden">কোনো নাম পাওয়া যায়নি।</p>
-
-    <div id="details" class="details hidden">
+    <p class="small">নাম লিখে খুঁজুন। বিস্তারিত জানতে নামের ওপর চাপ দিন।</p>
+    <input id="search" class="field" placeholder="মৃত ব্যক্তির নাম খুঁজুন">
+    <p id="status">তথ্য লোড হচ্ছে...</p>
+    <div id="peopleList"></div>
+    <div id="personDetails" class="hidden">
       <h3 id="personTitle"></h3>
       <div id="detailRows"></div>
-    </div>
-
-    <div class="admin">
-      <details id="adminDetails">
-        <summary>অ্যাডমিন প্যানেল — তথ্য যোগ/সম্পাদনা</summary>
-        <div class="admin-panel">
-          <p class="small">
-            সতর্কতা: এই সংস্করণে তথ্য শুধু এই ব্রাউজারে সংরক্ষিত হয়।
-            অ্যাডমিন প্যানেলটি পাসওয়ার্ড-সুরক্ষিত নয়।
-            অন্য ফোনে তথ্য দেখাতে অনলাইন ডেটাবেস ও নিরাপদ লগইন প্রয়োজন।
-          </p>
-
-          <form id="personForm">
-            <input type="hidden" id="editIndex" value="-1">
-
-            <div class="form-grid">
-              <div><label for="pName">মৃত ব্যক্তির নাম *</label><input class="field" id="pName" required></div>
-              <div><label for="pFather">পিতার নাম</label><input class="field" id="pFather"></div>
-              <div><label for="pMother">মাতার নাম</label><input class="field" id="pMother"></div>
-              <div><label for="pVillage">গ্রাম</label><input class="field" id="pVillage" value="সরদারপাড়া"></div>
-              <div><label for="pPost">পোস্ট</label><input class="field" id="pPost" value="মাঝডিয়াড়"></div>
-              <div><label for="pThana">থানা/উপজেলা</label><input class="field" id="pThana" value="দৌলতপুর"></div>
-              <div><label for="pDistrict">জেলা</label><input class="field" id="pDistrict" value="কুষ্টিয়া"></div>
-              <div><label for="pBirth">জন্ম তারিখ</label><input class="field" id="pBirth" placeholder="১০/১২/১৯৭৮"></div>
-              <div><label for="pDeath">মৃত্যু তারিখ</label><input class="field" id="pDeath" placeholder="২৩/০৯/২০১৯"></div>
-              <div><label for="pGrave">কবর নম্বর</label><input class="field" id="pGrave" placeholder="০০২"></div>
-              <div><label for="pNotes">অন্যান্য তথ্য</label><input class="field" id="pNotes"></div>
-            </div>
-
-            <button class="btn" type="submit">তথ্য সংরক্ষণ</button>
-            <button class="btn light" type="button" id="clearForm">ফর্ম পরিষ্কার</button>
-          </form>
-        </div>
-      </details>
     </div>
   </div>
 </section>
 
 <section id="contact">
-  <div class="heading"><h2>যোগাযোগ ও ঠিকানা</h2></div>
-  <div class="contact">
-    <h3>ভূরকা সরদারপাড়া কবরস্থান</h3>
+  <div class="card">
+    <h2>যোগাযোগ ও ঠিকানা</h2>
+    <p>ভূরকা সরদারপাড়া কবরস্থান</p>
     <p>ভুরকাপাড়া, মরিচা, দৌলতপুর, কুষ্টিয়া</p>
     <a class="btn" target="_blank" rel="noopener"
-       href="https://www.google.com/maps/search/?api=1&query=ভূরকা+সরদারপাড়া+কবরস্থান+ভুরকাপাড়া+মরিচা+দৌলতপুর+কুষ্টিয়া">
-       Google Maps-এ খুঁজুন
+       href="https://www.google.com/maps?q=24.087004,88.916529">
+      Google Maps-এ অবস্থান দেখুন
     </a>
+  </div>
+</section>
+
+<section id="admin">
+  <div class="card">
+    <h2>🔐 অ্যাডমিন প্যানেল</h2>
+    <p class="small">শুধু অনুমোদিত অ্যাডমিন লগইন করে তথ্য পরিবর্তন করতে পারবেন।</p>
+
+    <div id="loginBox">
+      <label for="email">অ্যাডমিন ইমেইল</label>
+      <input id="email" class="field" type="email"
+             autocomplete="username" required placeholder="আপনার ইমেইল">
+
+      <label for="password">পাসওয়ার্ড</label>
+      <input id="password" class="field" type="password"
+             autocomplete="current-password" required placeholder="পাসওয়ার্ড">
+
+      <button class="btn" id="loginBtn" type="button">লগইন</button>
+    </div>
+
+    <div id="adminBox" class="hidden">
+      <p class="notice">আপনি অ্যাডমিন হিসেবে লগইন করেছেন।</p>
+
+      <form id="personForm">
+        <input type="hidden" id="editId" value="">
+
+        <label for="pName">মৃত ব্যক্তির নাম *</label>
+        <input id="pName" class="field" required>
+
+        <label for="pFather">পিতার নাম</label>
+        <input id="pFather" class="field">
+
+        <label for="pMother">মাতা অথবা স্বামীর নাম</label>
+        <input id="pMother" class="field">
+
+        <label for="pVillage">গ্রাম</label>
+        <input id="pVillage" class="field" value="সরদারপাড়া">
+
+        <label for="pPost">পোস্ট</label>
+        <input id="pPost" class="field" value="মাঝডিয়াড়">
+
+        <label for="pThana">থানা/উপজেলা</label>
+        <input id="pThana" class="field" value="দৌলতপুর">
+
+        <label for="pDistrict">জেলা</label>
+        <input id="pDistrict" class="field" value="কুষ্টিয়া">
+
+        <label for="pBirth">জন্ম তারিখ</label>
+        <input id="pBirth" class="field" placeholder="১০/১২/১৯৭৮">
+
+        <label for="pDeath">মৃত্যু তারিখ</label>
+        <input id="pDeath" class="field" placeholder="২৩/০৯/২০১৯">
+
+        <label for="pGrave">কবর নম্বর</label>
+        <input id="pGrave" class="field">
+
+        <label for="pNotes">অন্যান্য তথ্য</label>
+        <textarea id="pNotes" class="field" rows="3"></textarea>
+
+        <button class="btn" type="submit">তথ্য সংরক্ষণ</button>
+        <button class="btn" type="button" id="clearBtn">নতুন তথ্য</button>
+      </form>
+
+      <hr>
+      <h3>তথ্য সম্পাদনা বা মুছুন</h3>
+      <p class="small">তালিকার প্রতিটি রেকর্ড থেকে সম্পাদনা বা মুছে ফেলার ব্যবস্থা পাওয়া যাবে।</p>
+      <button class="btn red" id="logoutBtn" type="button">লগআউট</button>
+    </div>
+
+    <p id="adminMessage" role="status"></p>
   </div>
 </section>
 </main>
 
 <footer>
-  <p><strong>ভূরকা সরদারপাড়া কবরস্থান</strong></p>
+  <strong>ভূরকা সরদারপাড়া কবরস্থান</strong>
   <p>ভুরকাপাড়া, মরিচা, দৌলতপুর, কুষ্টিয়া</p>
   <p>© <span id="year"></span> সর্বস্বত্ব সংরক্ষিত</p>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 "use strict";
 
+// Supabase Dashboard থেকে এই দুটি মান বসান
+const SUPABASE_URL = "YOUR_SUPABASE_URL";
+const SUPABASE_ANON_KEY = "YOUR_SUPABASE_ANON_KEY";
+
+document.getElementById("year").textContent =
+  new Date().getFullYear();
+
 const $ = id => document.getElementById(id);
-$("year").textContent = new Date().getFullYear();
 
-const starterData = [
-  {
-    name:"আব্দুর রহিম",
-    father:"আব্দুল করিম",
-    mother:"মোছা: মোমেনা বেগম",
-    village:"সরদারপাড়া",
-    post:"মাঝডিয়াড়",
-    thana:"দৌলতপুর",
-    district:"কুষ্টিয়া",
-    birth:"১০/১২/১৯৭৮",
-    death:"২৩/০৯/২০১৯",
-    grave:"০০২",
-    notes:""
-  },
-  {
-    name:"আব্দুর রহমান",
-    father:"",
-    mother:"",
-    village:"সরদারপাড়া",
-    post:"মাঝডিয়াড়",
-    thana:"দৌলতপুর",
-    district:"কুষ্টিয়া",
-    birth:"",
-    death:"",
-    grave:"০০৩",
-    notes:""
-  }
-];
+let db = null;
+let currentUser = null;
+let people = [];
 
-const storageKey = "bhurkaCemeteryPeople";
-let people = starterData.map(p => ({...p}));
-let selectedIndex = -1;
-
-try {
-  const saved = localStorage.getItem(storageKey);
-  if (saved !== null) {
-    const parsed = JSON.parse(saved);
-    if (Array.isArray(parsed)) people = parsed;
-  }
-} catch (e) {
-  console.warn("স্থানীয়ভাবে সংরক্ষিত তথ্য পড়া যায়নি।", e);
+function message(text) {
+  $("adminMessage").textContent = text;
 }
 
-function savePeople() {
-  try {
-    localStorage.setItem(storageKey, JSON.stringify(people));
-    return true;
-  } catch (e) {
-    alert("তথ্য সংরক্ষণ করা যায়নি। ব্রাউজারের স্টোরেজ পরীক্ষা করুন।");
-    return false;
+function safeText(value) {
+  return value == null || value === "" ? "তথ্য দেওয়া হয়নি" : String(value);
+}
+
+function setup() {
+  if (!window.supabase ||
+      SUPABASE_URL === "sb_publishable_AC6y86HGOpt8_HeDYamESw_GkSxgSYl"||
+      SUPABASE_ANON_KEY === "sb_secret_89D9gUVCgn40mLmJzKMO1g_Rh4-2pAL") {
+    $("status").textContent =
+      "Supabase URL ও Publishable/anon key বসানোর পর তথ্য লোড হবে।";
+    $("loginBtn").disabled = true;
+    return;
   }
+
+  db = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_ANON_KEY,
+    {
+      auth: {
+        persistSession: true,
+        autoRefreshToken: true,
+        detectSessionInUrl: true
+      }
+    }
+  );
+
+  db.auth.onAuthStateChange((_event, session) => {
+    currentUser = session ? session.user : null;
+    updateLoginView();
+  });
+
+  db.auth.getSession().then(({data, error}) => {
+    if (error) message("লগইন অবস্থা যাচাই করা যায়নি।");
+    currentUser = data?.session?.user || null;
+    updateLoginView();
+  });
+
+  loadPeople();
 }
 
-function addDetailRow(container, label, value) {
-  const row = document.createElement("div");
-  row.className = "detail-row";
-
-  const title = document.createElement("span");
-  title.className = "detail-label";
-  title.textContent = label + ": ";
-
-  const content = document.createElement("span");
-  content.textContent = value || "তথ্য দেওয়া হয়নি";
-
-  row.append(title, content);
-  container.appendChild(row);
+function updateLoginView() {
+  $("loginBox").classList.toggle("hidden", !!currentUser);
+  $("adminBox").classList.toggle("hidden", !currentUser);
+  if (currentUser) {
+    $("email").value = "";
+    $("password").value = "";
+  }
+  renderList();
 }
 
-function showDetails(index) {
-  const person = people[index];
-  if (!person) return;
+async function loadPeople() {
+  if (!db) return;
 
-  selectedIndex = index;
-  $("personTitle").textContent = person.name || "নাম দেওয়া হয়নি";
+  $("status").textContent = "তথ্য লোড হচ্ছে...";
 
-  const rows = $("detailRows");
-  rows.replaceChildren();
+  const {data, error} = await db
+    .from("cemetery_people")
+    .select("*")
+    .order("id", {ascending: true});
 
-  [
-    ["পিতার নাম", person.father],
-    ["মাতার নাম", person.mother],
-    ["গ্রাম", person.village],
-    ["পোস্ট", person.post],
-    ["থানা/উপজেলা", person.thana],
-    ["জেলা", person.district],
-    ["জন্ম তারিখ", person.birth],
-    ["মৃত্যু তারিখ", person.death],
-    ["কবর নম্বর", person.grave]
-  ].forEach(([label, value]) => addDetailRow(rows, label, value));
+  if (error) {
+    $("status").textContent =
+      "তথ্য লোড হয়নি। Supabase টেবিল ও নিরাপত্তা নীতি পরীক্ষা করুন।";
+    console.error(error);
+    return;
+  }
 
-  if (person.notes) addDetailRow(rows, "অন্যান্য তথ্য", person.notes);
-
-  const editButton = document.createElement("button");
-  editButton.type = "button";
-  editButton.className = "btn";
-  editButton.textContent = "তথ্য সম্পাদনা";
-  editButton.addEventListener("click", () => editPerson(index));
-
-  const deleteButton = document.createElement("button");
-  deleteButton.type = "button";
-  deleteButton.className = "btn red";
-  deleteButton.textContent = "তথ্য মুছুন";
-  deleteButton.addEventListener("click", () => deletePerson(index));
-
-  rows.append(editButton, deleteButton);
-  $("details").classList.remove("hidden");
+  people = data || [];
+  $("status").textContent = people.length
+    ? "মোট রেকর্ড: " + people.length
+    : "এখনো কোনো তথ্য যোগ করা হয়নি।";
   renderList();
 }
 
@@ -361,135 +288,210 @@ function renderList() {
   const list = $("peopleList");
   list.replaceChildren();
 
-  const matches = people
-    .map((person, index) => ({person, index}))
-    .filter(item => (item.person.name || "").toLocaleLowerCase().includes(term));
+  people
+    .filter(p => (p.name || "").toLocaleLowerCase().includes(term))
+    .forEach(p => {
+      const item = document.createElement("div");
 
-  $("noResults").classList.toggle("hidden", matches.length > 0);
+      const view = document.createElement("button");
+      view.type = "button";
+      view.className = "person";
+      view.textContent = p.name || "নাম দেওয়া হয়নি";
+      view.addEventListener("click", () => showDetails(p));
+      item.appendChild(view);
 
-  matches.forEach(({person, index}) => {
-    const button = document.createElement("button");
-    button.type = "button";
-    button.className = "person-button" +
-      (index === selectedIndex ? " active" : "");
+      // পরিবর্তনের বাটন শুধু লগইন করা অ্যাডমিন দেখবেন
+      if (currentUser) {
+        const edit = document.createElement("button");
+        edit.type = "button";
+        edit.className = "btn";
+        edit.textContent = "সম্পাদনা";
+        edit.addEventListener("click", () => editPerson(p));
+        item.appendChild(edit);
 
-    const serial = document.createElement("span");
-    serial.className = "serial";
-    serial.textContent = String(index + 1).padStart(3, "0") + ".";
+        const del = document.createElement("button");
+        del.type = "button";
+        del.className = "btn red";
+        del.textContent = "মুছুন";
+        del.addEventListener("click", () => deletePerson(p));
+        item.appendChild(del);
+      }
 
-    const name = document.createElement("span");
-    name.className = "person-name";
-    name.textContent = person.name || "নাম দেওয়া হয়নি";
-
-    const arrow = document.createElement("span");
-    arrow.textContent = "বিস্তারিত ›";
-
-    button.append(serial, name, arrow);
-    button.addEventListener("click", () => showDetails(index));
-    list.appendChild(button);
-  });
+      list.appendChild(item);
+    });
 }
 
-function editPerson(index) {
-  const person = people[index];
-  if (!person) return;
+function showDetails(p) {
+  $("personTitle").textContent = p.name || "নাম দেওয়া হয়নি";
+  const rows = $("detailRows");
+  rows.replaceChildren();
 
-  $("editIndex").value = String(index);
-  $("pName").value = person.name || "";
-  $("pFather").value = person.father || "";
-  $("pMother").value = person.mother || "";
-  $("pVillage").value = person.village || "";
-  $("pPost").value = person.post || "";
-  $("pThana").value = person.thana || "";
-  $("pDistrict").value = person.district || "";
-  $("pBirth").value = person.birth || "";
-  $("pDeath").value = person.death || "";
-  $("pGrave").value = person.grave || "";
-  $("pNotes").value = person.notes || "";
+  const fields = [
+    ["পিতার নাম", p.father],
+    ["মাতা অথবা স্বামীর নাম", p.mother],
+    ["গ্রাম", p.village],
+    ["পোস্ট", p.post],
+    ["থানা/উপজেলা", p.thana],
+    ["জেলা", p.district],
+    ["জন্ম তারিখ", p.birth],
+    ["মৃত্যু তারিখ", p.death],
+    ["কবর নম্বর", p.grave],
+    ["অন্যান্য তথ্য", p.notes]
+  ];
 
-  $("adminDetails").open = true;
-  $("personForm").scrollIntoView({behavior:"smooth", block:"start"});
+  fields.forEach(([label, value]) => {
+    const row = document.createElement("div");
+    row.className = "detail";
+    const strong = document.createElement("strong");
+    strong.textContent = label + ": ";
+    const span = document.createElement("span");
+    span.textContent = safeText(value);
+    row.append(strong, span);
+    rows.appendChild(row);
+  });
+
+  $("personDetails").classList.remove("hidden");
+}
+
+function editPerson(p) {
+  if (!currentUser) return;
+
+  $("editId").value = String(p.id);
+  $("pName").value = p.name || "";
+  $("pFather").value = p.father || "";
+  $("pMother").value = p.mother || "";
+  $("pVillage").value = p.village || "";
+  $("pPost").value = p.post || "";
+  $("pThana").value = p.thana || "";
+  $("pDistrict").value = p.district || "";
+  $("pBirth").value = p.birth || "";
+  $("pDeath").value = p.death || "";
+  $("pGrave").value = p.grave || "";
+  $("pNotes").value = p.notes || "";
+
+  $("personForm").scrollIntoView({behavior:"smooth"});
 }
 
 function clearForm() {
   $("personForm").reset();
-  $("editIndex").value = "-1";
+  $("editId").value = "";
   $("pVillage").value = "সরদারপাড়া";
   $("pPost").value = "মাঝডিয়াড়";
   $("pThana").value = "দৌলতপুর";
   $("pDistrict").value = "কুষ্টিয়া";
 }
 
-function deletePerson(index) {
-  const person = people[index];
-  if (!person) return;
+async function deletePerson(p) {
+  if (!currentUser) return;
+  if (!confirm('"' + p.name + '"-এর তথ্য মুছবেন?')) return;
 
-  if (!confirm('আপনি কি "' + person.name + '"-এর তথ্য মুছে ফেলতে চান?')) {
+  const {error} = await db
+    .from("cemetery_people")
+    .delete()
+    .eq("id", p.id);
+
+  if (error) {
+    message("তথ্য মোছা যায়নি। অনুমতি বা সংযোগ পরীক্ষা করুন।");
+    console.error(error);
     return;
   }
 
-  const previous = people.slice();
-  people.splice(index, 1);
-
-  if (!savePeople()) {
-    people = previous;
-    return;
-  }
-
-  selectedIndex = -1;
-  $("details").classList.add("hidden");
-  renderList();
+  message("তথ্য মুছে ফেলা হয়েছে।");
+  $("personDetails").classList.add("hidden");
+  await loadPeople();
 }
 
-$("personForm").addEventListener("submit", function(event) {
-  event.preventDefault();
+$("loginBtn").addEventListener("click", async () => {
+  if (!db) return;
 
-  const name = $("pName").value.trim();
-  if (!name) {
-    alert("মৃত ব্যক্তির নাম লিখুন।");
+  const email = $("email").value.trim();
+  const password = $("password").value;
+
+  if (!email || !password) {
+    message("ইমেইল ও পাসওয়ার্ড লিখুন।");
+    return;
+  }
+
+  $("loginBtn").disabled = true;
+  const {error} = await db.auth.signInWithPassword({
+    email, password
+  });
+  $("loginBtn").disabled = false;
+
+  if (error) {
+    message("লগইন ব্যর্থ হয়েছে। ইমেইল ও পাসওয়ার্ড পরীক্ষা করুন।");
+  } else {
+    message("লগইন সফল হয়েছে।");
+  }
+});
+
+$("personForm").addEventListener("submit", async event => {
+  event.preventDefault();
+  if (!db || !currentUser) {
+    message("তথ্য পরিবর্তনের আগে অ্যাডমিন লগইন করুন।");
     return;
   }
 
   const record = {
-    name,
-    father:$("pFather").value.trim(),
-    mother:$("pMother").value.trim(),
-    village:$("pVillage").value.trim(),
-    post:$("pPost").value.trim(),
-    thana:$("pThana").value.trim(),
-    district:$("pDistrict").value.trim(),
-    birth:$("pBirth").value.trim(),
-    death:$("pDeath").value.trim(),
-    grave:$("pGrave").value.trim(),
-    notes:$("pNotes").value.trim()
+    name: $("pName").value.trim(),
+    father: $("pFather").value.trim(),
+    mother: $("pMother").value.trim(),
+    village: $("pVillage").value.trim(),
+    post: $("pPost").value.trim(),
+    thana: $("pThana").value.trim(),
+    district: $("pDistrict").value.trim(),
+    birth: $("pBirth").value.trim(),
+    death: $("pDeath").value.trim(),
+    grave: $("pGrave").value.trim(),
+    notes: $("pNotes").value.trim()
   };
 
-  const index = Number($("editIndex").value);
-  const previous = people.slice();
-
-  if (Number.isInteger(index) && index >= 0 && index < people.length) {
-    people[index] = record;
-    selectedIndex = index;
-  } else {
-    people.push(record);
-    selectedIndex = people.length - 1;
+  if (!record.name) {
+    message("মৃত ব্যক্তির নাম লিখুন।");
+    return;
   }
 
-  if (!savePeople()) {
-    people = previous;
+  const id = $("editId").value;
+  let result;
+
+  if (id) {
+    result = await db.from("cemetery_people")
+      .update(record)
+      .eq("id", Number(id));
+  } else {
+    // মালিকের User ID ডেটাবেসে স্পষ্টভাবে সংযুক্ত
+    record.owner_id = currentUser.id;
+    result = await db.from("cemetery_people").insert(record);
+  }
+
+  if (result.error) {
+    message("তথ্য সংরক্ষণ হয়নি। নিরাপত্তা নীতি ও সংযোগ পরীক্ষা করুন।");
+    console.error(result.error);
     return;
   }
 
   clearForm();
-  renderList();
-  showDetails(selectedIndex);
-  alert("তথ্য সংরক্ষণ হয়েছে।");
+  message("তথ্য সফলভাবে সংরক্ষিত হয়েছে।");
+  await loadPeople();
 });
 
-$("clearForm").addEventListener("click", clearForm);
+$("clearBtn").addEventListener("click", clearForm);
 $("search").addEventListener("input", renderList);
 
-renderList();
+$("logoutBtn").addEventListener("click", async () => {
+  if (!db) return;
+  const {error} = await db.auth.signOut();
+  if (error) {
+    message("লগআউট করা যায়নি। আবার চেষ্টা করুন।");
+  } else {
+    currentUser = null;
+    updateLoginView();
+    message("আপনি লগআউট করেছেন।");
+  }
+});
+
+setup();
 </script>
 </body>
 </html>
+
