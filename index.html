@@ -6,59 +6,93 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#14532d">
 <title>ভূরকা সরদারপাড়া কবরস্থান</title>
+
 <style>
-:root{--green:#14532d;--light:#edf7ed;--cream:#fbfcf7;--border:#d8e6d8}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;font-family:"Noto Sans Bengali",Arial,sans-serif;background:var(--cream);color:#25352a;line-height:1.8}
-header{background:var(--green);color:white;padding:15px 5%;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+body{
+  margin:0;
+  font-family:"Noto Sans Bengali",Arial,sans-serif;
+  background:#fbfcf7;
+  color:#25352a;
+  line-height:1.8
+}
+header{
+  background:#14532d;color:white;padding:16px 5%;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:12px
+}
 .brand{font-size:20px;font-weight:bold}
 .brand small{display:block;font-size:12px;font-weight:normal}
 nav{display:flex;gap:12px;flex-wrap:wrap}
 nav a{color:white;text-decoration:none;font-size:14px}
 nav a:hover{text-decoration:underline}
-.hero{padding:45px 18px;text-align:center;background:linear-gradient(135deg,#dcefd9,#fffdf2)}
-.hero h1{font-size:clamp(27px,6vw,42px);color:var(--green);line-height:1.5}
+.hero{
+  text-align:center;padding:45px 16px;
+  background:linear-gradient(135deg,#dcefd9,#fffdf2)
+}
+.hero h1{font-size:clamp(27px,6vw,42px);color:#14532d;line-height:1.5}
 .hero p{max-width:680px;margin:10px auto 22px}
-.btn{display:inline-block;padding:9px 16px;border:0;border-radius:8px;background:var(--green);color:white;text-decoration:none;font:inherit;cursor:pointer;margin:3px}
-.btn.light{background:white;color:var(--green);border:1px solid var(--border)}
+.btn{
+  display:inline-block;padding:9px 16px;border:0;border-radius:8px;
+  background:#14532d;color:white;text-decoration:none;
+  font:inherit;cursor:pointer;margin:3px
+}
+.btn.light{background:white;color:#14532d;border:1px solid #d8e6d8}
 .btn.red{background:#a32626}
 main{max-width:1000px;margin:auto;padding:0 16px 35px}
 section{padding:28px 0;scroll-margin-top:15px}
 .heading{text-align:center;margin-bottom:20px}
-.heading h2{color:var(--green);margin:0;font-size:26px}
+.heading h2{color:#14532d;margin:0;font-size:26px}
 .heading p{margin:5px 0;color:#627365}
 .banner{max-width:970px;margin:22px auto;padding:0 16px}
-.banner-inner{background:linear-gradient(135deg,#d7e9d0,#a6c8a2);color:var(--green);text-align:center;border-radius:14px;padding:30px 12px}
+.banner-inner{
+  background:linear-gradient(135deg,#d7e9d0,#a6c8a2);
+  color:#14532d;text-align:center;border-radius:14px;padding:30px 12px
+}
 .banner-inner strong{font-size:22px}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
-.card{background:white;border:1px solid var(--border);border-radius:12px;padding:18px}
-.card h3{color:var(--green);margin-top:0}
-.search,.field{width:100%;padding:11px;border:1px solid #c7d8c7;border-radius:8px;font:inherit;background:white;margin:5px 0 12px}
+.card{background:white;border:1px solid #d8e6d8;border-radius:12px;padding:18px}
+.card h3{color:#14532d;margin-top:0}
+.search,.field{
+  width:100%;padding:11px;border:1px solid #c7d8c7;
+  border-radius:8px;font:inherit;background:white;margin:5px 0 12px
+}
 .person-list{display:grid;gap:9px}
-.person-button{width:100%;display:flex;align-items:center;gap:10px;padding:12px;background:white;border:1px solid var(--border);border-radius:9px;text-align:left;font:inherit;color:var(--green);cursor:pointer}
-.person-button:hover,.person-button.active{background:var(--light);border-color:var(--green)}
+.person-button{
+  width:100%;display:flex;align-items:center;gap:10px;padding:12px;
+  background:white;border:1px solid #d8e6d8;border-radius:9px;
+  text-align:left;font:inherit;color:#14532d;cursor:pointer
+}
+.person-button:hover,.person-button.active{background:#edf7ed;border-color:#14532d}
 .serial{font-weight:bold;min-width:36px}
 .person-name{font-weight:bold;flex:1}
-.details{margin-top:18px;padding:18px;background:white;border:1px solid var(--border);border-radius:12px;overflow-wrap:anywhere}
-.details h3{color:var(--green);margin-top:0}
+.details{
+  margin-top:18px;padding:18px;background:white;
+  border:1px solid #d8e6d8;border-radius:12px;overflow-wrap:anywhere
+}
+.details h3{color:#14532d;margin-top:0}
 .detail-row{padding:7px 0;border-bottom:1px solid #edf1eb}
-.detail-label{font-weight:bold;color:var(--green)}
+.detail-label{font-weight:bold;color:#14532d}
 .hidden{display:none!important}
-.admin{margin-top:25px;border-top:1px solid var(--border);padding-top:18px}
-.admin summary{color:var(--green);font-weight:bold;font-size:18px;cursor:pointer}
+.admin{margin-top:25px;border-top:1px solid #d8e6d8;padding-top:18px}
+.admin summary{color:#14532d;font-weight:bold;font-size:18px;cursor:pointer}
 .admin-panel{margin-top:12px;padding:16px;background:#f0f6ed;border-radius:10px}
 .form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:0 12px}
-label{font-size:14px;color:var(--green);font-weight:bold}
+label{font-size:14px;color:#14532d;font-weight:bold}
 .small{font-size:13px;color:#627365}
-.contact{padding:22px;background:var(--light);border-radius:12px;text-align:center}
+.contact{padding:22px;background:#edf7ed;border-radius:12px;text-align:center}
 footer{background:#103c28;color:#edf5ed;text-align:center;padding:22px 12px;font-size:14px}
 footer p{margin:4px}
-@media(max-width:600px){header{justify-content:center;text-align:center}nav{justify-content:center}.hero{padding:30px 15px}}
+@media(max-width:600px){
+  header{justify-content:center;text-align:center}
+  nav{justify-content:center}
+  .hero{padding:30px 15px}
+}
 </style>
 </head>
-<body>
 
+<body>
 <header>
   <div class="brand">
     ভূরকা সরদারপাড়া কবরস্থান
@@ -84,8 +118,8 @@ footer p{margin:4px}
 
 <div class="banner">
   <div class="banner-inner">
-    <strong>🌿 কবরস্থানের ছবি</strong>
-    <p>এখানে কবরস্থানের আসল ছবি যুক্ত করতে পারবেন।</p>
+    <strong>🌿 ভূরকা সরদারপাড়া কবরস্থান</strong>
+    <p>কবরস্থানের পরিচিতি, তথ্য ও রক্ষণাবেক্ষণে এলাকাবাসীর সম্মিলিত উদ্যোগ।</p>
   </div>
 </div>
 
@@ -141,7 +175,9 @@ footer p{margin:4px}
   </div>
 
   <div class="card">
-    <input id="search" class="search" type="search" placeholder="মৃত ব্যক্তির নাম লিখুন...">
+    <input id="search" class="search" type="search"
+           placeholder="মৃত ব্যক্তির নাম লিখুন..." aria-label="নাম দিয়ে খুঁজুন">
+
     <div id="peopleList" class="person-list"></div>
     <p id="noResults" class="hidden">কোনো নাম পাওয়া যায়নি।</p>
 
@@ -151,17 +187,18 @@ footer p{margin:4px}
     </div>
 
     <div class="admin">
-      <details>
-        <summary>🔐 অ্যাডমিন প্যানেল — তথ্য যোগ/সম্পাদনা</summary>
+      <details id="adminDetails">
+        <summary>অ্যাডমিন প্যানেল — তথ্য যোগ/সম্পাদনা</summary>
         <div class="admin-panel">
           <p class="small">
-            এই সংস্করণে তথ্য আপনার বর্তমান ব্রাউজারে সংরক্ষিত হবে।
-            এটি পাসওয়ার্ড-সুরক্ষিত নয় এবং অন্য ফোনে তথ্য স্বয়ংক্রিয়ভাবে যাবে না।
-            প্রকৃত অনলাইন ব্যবস্থার জন্য Firebase ডেটাবেস ও অ্যাডমিন লগইন আলাদাভাবে সেটআপ করতে হবে।
+            সতর্কতা: এই সংস্করণে তথ্য শুধু এই ব্রাউজারে সংরক্ষিত হয়।
+            অ্যাডমিন প্যানেলটি পাসওয়ার্ড-সুরক্ষিত নয়।
+            অন্য ফোনে তথ্য দেখাতে অনলাইন ডেটাবেস ও নিরাপদ লগইন প্রয়োজন।
           </p>
 
           <form id="personForm">
             <input type="hidden" id="editIndex" value="-1">
+
             <div class="form-grid">
               <div><label for="pName">মৃত ব্যক্তির নাম *</label><input class="field" id="pName" required></div>
               <div><label for="pFather">পিতার নাম</label><input class="field" id="pFather"></div>
@@ -175,6 +212,7 @@ footer p{margin:4px}
               <div><label for="pGrave">কবর নম্বর</label><input class="field" id="pGrave" placeholder="০০২"></div>
               <div><label for="pNotes">অন্যান্য তথ্য</label><input class="field" id="pNotes"></div>
             </div>
+
             <button class="btn" type="submit">তথ্য সংরক্ষণ</button>
             <button class="btn light" type="button" id="clearForm">ফর্ম পরিষ্কার</button>
           </form>
@@ -189,7 +227,10 @@ footer p{margin:4px}
   <div class="contact">
     <h3>ভূরকা সরদারপাড়া কবরস্থান</h3>
     <p>ভুরকাপাড়া, মরিচা, দৌলতপুর, কুষ্টিয়া</p>
-    <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=ভূরকা+সরদারপাড়া+কবরস্থান+ভুরকাপাড়া+মরিচা+দৌলতপুর+কুষ্টিয়া">Google Maps-এ খুঁজুন</a>
+    <a class="btn" target="_blank" rel="noopener"
+       href="https://www.google.com/maps/search/?api=1&query=ভূরকা+সরদারপাড়া+কবরস্থান+ভুরকাপাড়া+মরিচা+দৌলতপুর+কুষ্টিয়া">
+       Google Maps-এ খুঁজুন
+    </a>
   </div>
 </section>
 </main>
@@ -203,7 +244,8 @@ footer p{margin:4px}
 <script>
 "use strict";
 
-document.getElementById("year").textContent = new Date().getFullYear();
+const $ = id => document.getElementById(id);
+$("year").textContent = new Date().getFullYear();
 
 const starterData = [
   {
@@ -234,32 +276,31 @@ const starterData = [
   }
 ];
 
-const $ = id => document.getElementById(id);
 const storageKey = "bhurkaCemeteryPeople";
 let people = starterData.map(p => ({...p}));
 let selectedIndex = -1;
 
 try {
-  const stored = localStorage.getItem(storageKey);
-  if (stored !== null) {
-    const parsed = JSON.parse(stored);
+  const saved = localStorage.getItem(storageKey);
+  if (saved !== null) {
+    const parsed = JSON.parse(saved);
     if (Array.isArray(parsed)) people = parsed;
   }
-} catch (error) {
-  console.warn("Saved records could not be read.", error);
+} catch (e) {
+  console.warn("স্থানীয়ভাবে সংরক্ষিত তথ্য পড়া যায়নি।", e);
 }
 
 function savePeople() {
   try {
     localStorage.setItem(storageKey, JSON.stringify(people));
     return true;
-  } catch (error) {
+  } catch (e) {
     alert("তথ্য সংরক্ষণ করা যায়নি। ব্রাউজারের স্টোরেজ পরীক্ষা করুন।");
     return false;
   }
 }
 
-function makeDetail(label, value) {
+function addDetailRow(container, label, value) {
   const row = document.createElement("div");
   row.className = "detail-row";
 
@@ -271,45 +312,46 @@ function makeDetail(label, value) {
   content.textContent = value || "তথ্য দেওয়া হয়নি";
 
   row.append(title, content);
-  return row;
+  container.appendChild(row);
 }
 
 function showDetails(index) {
-  selectedIndex = index;
-  const p = people[index];
-  if (!p) return;
+  const person = people[index];
+  if (!person) return;
 
-  $("personTitle").textContent = p.name || "নাম দেওয়া হয়নি";
+  selectedIndex = index;
+  $("personTitle").textContent = person.name || "নাম দেওয়া হয়নি";
+
   const rows = $("detailRows");
   rows.replaceChildren();
 
   [
-    ["পিতার নাম", p.father],
-    ["মাতার নাম", p.mother],
-    ["গ্রাম", p.village],
-    ["পোস্ট", p.post],
-    ["থানা/উপজেলা", p.thana],
-    ["জেলা", p.district],
-    ["জন্ম তারিখ", p.birth],
-    ["মৃত্যু তারিখ", p.death],
-    ["কবর নম্বর", p.grave]
-  ].forEach(([label, value]) => rows.appendChild(makeDetail(label, value)));
+    ["পিতার নাম", person.father],
+    ["মাতার নাম", person.mother],
+    ["গ্রাম", person.village],
+    ["পোস্ট", person.post],
+    ["থানা/উপজেলা", person.thana],
+    ["জেলা", person.district],
+    ["জন্ম তারিখ", person.birth],
+    ["মৃত্যু তারিখ", person.death],
+    ["কবর নম্বর", person.grave]
+  ].forEach(([label, value]) => addDetailRow(rows, label, value));
 
-  if (p.notes) rows.appendChild(makeDetail("অন্যান্য তথ্য", p.notes));
+  if (person.notes) addDetailRow(rows, "অন্যান্য তথ্য", person.notes);
 
-  const edit = document.createElement("button");
-  edit.type = "button";
-  edit.className = "btn";
-  edit.textContent = "তথ্য সম্পাদনা";
-  edit.onclick = () => editPerson(index);
+  const editButton = document.createElement("button");
+  editButton.type = "button";
+  editButton.className = "btn";
+  editButton.textContent = "তথ্য সম্পাদনা";
+  editButton.addEventListener("click", () => editPerson(index));
 
-  const del = document.createElement("button");
-  del.type = "button";
-  del.className = "btn red";
-  del.textContent = "তথ্য মুছুন";
-  del.onclick = () => deletePerson(index);
+  const deleteButton = document.createElement("button");
+  deleteButton.type = "button";
+  deleteButton.className = "btn red";
+  deleteButton.textContent = "তথ্য মুছুন";
+  deleteButton.addEventListener("click", () => deletePerson(index));
 
-  rows.append(edit, del);
+  rows.append(editButton, deleteButton);
   $("details").classList.remove("hidden");
   renderList();
 }
@@ -323,12 +365,13 @@ function renderList() {
     .map((person, index) => ({person, index}))
     .filter(item => (item.person.name || "").toLocaleLowerCase().includes(term));
 
-  $("noResults").classList.toggle("hidden", matches.length !== 0);
+  $("noResults").classList.toggle("hidden", matches.length > 0);
 
   matches.forEach(({person, index}) => {
     const button = document.createElement("button");
     button.type = "button";
-    button.className = "person-button" + (index === selectedIndex ? " active" : "");
+    button.className = "person-button" +
+      (index === selectedIndex ? " active" : "");
 
     const serial = document.createElement("span");
     serial.className = "serial";
@@ -348,23 +391,23 @@ function renderList() {
 }
 
 function editPerson(index) {
-  const p = people[index];
-  if (!p) return;
+  const person = people[index];
+  if (!person) return;
 
   $("editIndex").value = String(index);
-  $("pName").value = p.name || "";
-  $("pFather").value = p.father || "";
-  $("pMother").value = p.mother || "";
-  $("pVillage").value = p.village || "";
-  $("pPost").value = p.post || "";
-  $("pThana").value = p.thana || "";
-  $("pDistrict").value = p.district || "";
-  $("pBirth").value = p.birth || "";
-  $("pDeath").value = p.death || "";
-  $("pGrave").value = p.grave || "";
-  $("pNotes").value = p.notes || "";
+  $("pName").value = person.name || "";
+  $("pFather").value = person.father || "";
+  $("pMother").value = person.mother || "";
+  $("pVillage").value = person.village || "";
+  $("pPost").value = person.post || "";
+  $("pThana").value = person.thana || "";
+  $("pDistrict").value = person.district || "";
+  $("pBirth").value = person.birth || "";
+  $("pDeath").value = person.death || "";
+  $("pGrave").value = person.grave || "";
+  $("pNotes").value = person.notes || "";
 
-  document.querySelector("#deceased .admin details").open = true;
+  $("adminDetails").open = true;
   $("personForm").scrollIntoView({behavior:"smooth", block:"start"});
 }
 
@@ -378,16 +421,18 @@ function clearForm() {
 }
 
 function deletePerson(index) {
-  const p = people[index];
-  if (!p) return;
+  const person = people[index];
+  if (!person) return;
 
-  if (!confirm("আপনি কি \"" + p.name + "\"-এর তথ্য মুছে ফেলতে চান?")) return;
+  if (!confirm('আপনি কি "' + person.name + '"-এর তথ্য মুছে ফেলতে চান?')) {
+    return;
+  }
 
-  const old = people.slice();
+  const previous = people.slice();
   people.splice(index, 1);
 
   if (!savePeople()) {
-    people = old;
+    people = previous;
     return;
   }
 
@@ -420,7 +465,7 @@ $("personForm").addEventListener("submit", function(event) {
   };
 
   const index = Number($("editIndex").value);
-  const old = people.slice();
+  const previous = people.slice();
 
   if (Number.isInteger(index) && index >= 0 && index < people.length) {
     people[index] = record;
@@ -431,7 +476,7 @@ $("personForm").addEventListener("submit", function(event) {
   }
 
   if (!savePeople()) {
-    people = old;
+    people = previous;
     return;
   }
 
