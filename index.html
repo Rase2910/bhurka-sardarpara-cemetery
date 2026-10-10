@@ -85,42 +85,65 @@ footer{text-align:center}
   </div>
 </section>
 
+
 <section id="people">
   <div class="card">
     <h2>মরহুমদের তালিকা</h2>
-    <p class="small">নাম লিখে খুঁজুন। বিস্তারিত জানতে নামের ওপর চাপ দিন।</p>
-    <input id="search" class="field" placeholder="
-<div style="display:flex;gap:8px;flex-wrap:wrap;">
-  <input id="filterYear" class="field"
-         type="text" inputmode="numeric"
-         placeholder="বছর লিখুন, যেমন ২০১৯"
-         style="flex:1;min-width:140px;">
 
-  <select id="filterMonth" class="field"
-          style="flex:1;min-width:140px;">
-    <option value="">সব মাস</option>
-    <option value="01">জানুয়ারি</option>
-    <option value="02">ফেব্রুয়ারি</option>
-    <option value="03">মার্চ</option>
-    <option value="04">এপ্রিল</option>
-    <option value="05">মে</option>
-    <option value="06">জুন</option>
-    <option value="07">জুলাই</option>
-    <option value="08">আগস্ট</option>
-    <option value="09">সেপ্টেম্বর</option>
-    <option value="10">অক্টোবর</option>
-    <option value="11">নভেম্বর</option>
-    <option value="12">ডিসেম্বর</option>
-  </select>
-</div>
+    <p class="small">
+      নাম অথবা পিতার নাম লিখে খুঁজুন।
+      ডান পাশের আইকনে চাপ দিয়ে বিস্তারিত দেখুন।
+    </p>
+
+    <input
+      id="search"
+      class="field"
+      type="search"
+      placeholder="মৃত ব্যক্তির নাম বা পিতার নাম লিখুন"
+    >
+
+    <div style="display:flex;gap:8px;flex-wrap:wrap;">
+      <input
+        id="filterYear"
+        class="field"
+        type="text"
+        inputmode="numeric"
+        placeholder="বছর লিখুন, যেমন ২০১৯"
+        style="flex:1;min-width:140px;"
+      >
+
+      <select
+        id="filterMonth"
+        class="field"
+        style="flex:1;min-width:140px;"
+      >
+        <option value="">সব মাস</option>
+        <option value="01">জানুয়ারি</option>
+        <option value="02">ফেব্রুয়ারি</option>
+        <option value="03">মার্চ</option>
+        <option value="04">এপ্রিল</option>
+        <option value="05">মে</option>
+        <option value="06">জুন</option>
+        <option value="07">জুলাই</option>
+        <option value="08">আগস্ট</option>
+        <option value="09">সেপ্টেম্বর</option>
+        <option value="10">অক্টোবর</option>
+        <option value="11">নভেম্বর</option>
+        <option value="12">ডিসেম্বর</option>
+      </select>
+    </div>
+
     <p id="status">তথ্য লোড হচ্ছে...</p>
+
     <div id="peopleList"></div>
+
     <div id="personDetails" class="hidden">
       <h3 id="personTitle"></h3>
       <div id="detailRows"></div>
     </div>
   </div>
 </section>
+
 
 <section id="contact">
   <div class="card">
