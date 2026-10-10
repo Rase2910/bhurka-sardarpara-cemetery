@@ -454,87 +454,127 @@ async function loadPeople() {
 
   getFilteredPeople().forEach((p, index) => {
     const item = document.createElement("div");
-
-    item.style.display = "flex";
-    item.style.alignItems = "center";
-    item.style.gap = "8px";
-    item.style.flexWrap = "wrap";
     item.style.margin = "8px 0";
-    item.style.padding = "10px";
+    item.style.padding = "12px";
     item.style.border = "1px solid #d8e6d8";
     item.style.borderRadius = "8px";
-    item.style.background = "#ffffff";
+    item.style.background = "white";
 
-    // সিরিয়াল নম্বর
-    const serial = document.createElement("span");
-    serial.textContent = (index + 1) + ".";
-    serial.style.fontWeight = "bold";
-    serial.style.color = "#14532d";
+    // নাম ও বিস্তারিত বাটন একই লাইনে
+    const header = document.createElement("div");
+    header.style.display = "flex";
+    header.style.alignItems = "center";
+    header.style.justifyContent = "space-between";
+    header.style.gap = "8px";
 
-    // নাম এবং পিতার/স্বামীর নাম
     const infoBox = document.createElement("div");
     infoBox.style.flex = "1";
-    infoBox.style.minWidth = "150px";
+    infoBox.style.minWidth = "0";
 
     const name = document.createElement("div");
-    name.textContent = p.name || "নাম দেওয়া হয়নি";
     name.style.fontWeight = "bold";
     name.style.color = "#14532d";
-
+    name.textContent = (index + 1) + ". " + (p.name || "নাম দেওয়া হয়নি");
     infoBox.appendChild(name);
 
     if (p.father) {
       const father = document.createElement("div");
-      father.textContent = "পিতার নাম: " + p.father;
       father.style.fontSize = "13px";
       father.style.color = "#627365";
+      father.textContent = "পিতার নাম: " + p.father;
       infoBox.appendChild(father);
     }
 
     if (p.mother) {
       const mother = document.createElement("div");
-      mother.textContent = "মাতা/স্বামীর নাম: " + p.mother;
       mother.style.fontSize = "13px";
       mother.style.color = "#627365";
+      mother.textContent = "মাতা/স্বামীর নাম: " + p.mother;
       infoBox.appendChild(mother);
     }
 
-    // বিস্তারিত বাটন
-    const details = document.createElement("button");
-    details.type = "button";
-    details.className = "btn";
-    details.textContent = "বিস্তারিত";
-    details.style.margin = "0";
-    details.style.padding = "7px 10px";
-    details.addEventListener("click", () => showDetails(p));
+    // ডান পাশে বিস্তারিত বাটন
+    const detailsBtn = document.createElement("button");
+    detailsBtn.type = "button";
+    detailsBtn.className = "btn";
+    detailsBtn.textContent = "বিস্তারিত";
+    detailsBtn.style.margin = "0";
+    detailsBtn.style.padding = "7px 10px";
+    detailsBtn.style.flexShrink = "0";
 
-    item.appendChild(serial);
-    item.appendChild(infoBox);
-    item.appendChild(details);
+    // শুধু এই মরহুমের বিস্তারিত অংশ
+    const detailsBox = document.createElement("div");
+    detailsBox.className = "hidden";
+    detailsBox.style.marginTop = "10px";
+    detailsBox.style.paddingTop = "8px";
+    detailsBox.style.borderTop = "1px solid #d8e6d8";
+
+    // প্রতিটি রেকর্ডের নিজস্ব বিস্তারিত তৈরি
+    const fields = [
+      ["পিতার নাম", p.father],
+      ["মাতা অথবা স্বামীর নাম", p.mother],
+      ["গ্রাম", p.village],
+      ["পোস্ট", p.post],
+      ["থানা/উপজেলা", p.thana],
+      ["জেলা", p.district],
+      ["জন্ম তারিখ", p.birth],
+      ["মৃত্যু তারিখ", p.death],
+      ["কবর নম্বর", p.grave],
+      ["অন্যান্য তথ্য", p.notes]
+    ];
+
+    fields.forEach(([label, value]) => {
+      const row = document.createElement("div");
+      row.className = "detail";
+
+      const strong = document.createElement("strong");
+      strong.textContent = label + ": ";
+
+      const span = document.createElement("span");
+      span.textContent = safeText(value);
+
+      row.append(strong, span);
+      detailsBox.appendChild(row);
+    });
+
+    detailsBtn.addEventListener("click", () => {
+      const isHidden = detailsBox.classList.contains("hidden");
+
+      detailsBox.classList.toggle("hidden", !isHidden);
+      detailsBtn.textContent = isHidden
+        ? "বিস্তারিত বন্ধ"
+        : "বিস্তারিত";
+    });
+
+    header.append(infoBox, detailsBtn);
+    item.append(header);
+    item.append(detailsBox);
 
     // অ্যাডমিনের সম্পাদনা ও মুছে ফেলার ব্যবস্থা
     if (currentUser) {
+      const actions = document.createElement("div");
+      actions.style.marginTop = "8px";
+
       const edit = document.createElement("button");
       edit.type = "button";
       edit.className = "btn";
       edit.textContent = "সম্পাদনা";
-      edit.style.margin = "0";
       edit.addEventListener("click", () => editPerson(p));
 
       const del = document.createElement("button");
       del.type = "button";
       del.className = "btn red";
       del.textContent = "মুছুন";
-      del.style.margin = "0";
       del.addEventListener("click", () => deletePerson(p));
 
-      item.appendChild(edit);
-      item.appendChild(del);
+      actions.append(edit, del);
+      item.appendChild(actions);
     }
 
     list.appendChild(item);
   });
 }
+
 
 
 function showDetails(p) {
