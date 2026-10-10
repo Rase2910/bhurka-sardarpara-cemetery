@@ -449,8 +449,6 @@ async function loadPeople() {
 
 
   function renderList() {
-  const term = $("search").value.trim().toLocaleLowerCase();
-
   const list = $("peopleList");
   list.replaceChildren();
 
@@ -459,57 +457,85 @@ async function loadPeople() {
 
     item.style.display = "flex";
     item.style.alignItems = "center";
-    item.style.gap = "6px";
-    item.style.margin = "6px 0";
+    item.style.gap = "8px";
+    item.style.flexWrap = "wrap";
+    item.style.margin = "8px 0";
+    item.style.padding = "10px";
+    item.style.border = "1px solid #d8e6d8";
+    item.style.borderRadius = "8px";
+    item.style.background = "#ffffff";
 
     // সিরিয়াল নম্বর
     const serial = document.createElement("span");
     serial.textContent = (index + 1) + ".";
-    serial.style.minWidth = "28px";
-    serial.style.color = "#14532d";
     serial.style.fontWeight = "bold";
+    serial.style.color = "#14532d";
 
-    // মৃত ব্যক্তির নাম
-    const view = document.createElement("div");
-    view.className = "person";
-    view.style.flex = "1";
-    view.style.margin = "0";
-    view.textContent = p.name || "নাম দেওয়া হয়নি";
+    // নাম এবং পিতার/স্বামীর নাম
+    const infoBox = document.createElement("div");
+    infoBox.style.flex = "1";
+    infoBox.style.minWidth = "150px";
 
-    // বিস্তারিত দেখার আইকন
-    const info = document.createElement("button");
-    info.type = "button";
-    info.className = "btn";
-    info.textContent = "ⓘ";
-    info.title = "বিস্তারিত দেখুন";
-    info.setAttribute("aria-label", "বিস্তারিত দেখুন");
-    info.style.margin = "0";
-    info.style.minWidth = "44px";
+    const name = document.createElement("div");
+    name.textContent = p.name || "নাম দেওয়া হয়নি";
+    name.style.fontWeight = "bold";
+    name.style.color = "#14532d";
 
-    info.addEventListener("click", () => showDetails(p));
+    infoBox.appendChild(name);
 
-    item.append(serial, view, info);
+    if (p.father) {
+      const father = document.createElement("div");
+      father.textContent = "পিতার নাম: " + p.father;
+      father.style.fontSize = "13px";
+      father.style.color = "#627365";
+      infoBox.appendChild(father);
+    }
 
-    // শুধু অ্যাডমিনের জন্য সম্পাদনা ও মুছে ফেলা
+    if (p.mother) {
+      const mother = document.createElement("div");
+      mother.textContent = "মাতা/স্বামীর নাম: " + p.mother;
+      mother.style.fontSize = "13px";
+      mother.style.color = "#627365";
+      infoBox.appendChild(mother);
+    }
+
+    // বিস্তারিত বাটন
+    const details = document.createElement("button");
+    details.type = "button";
+    details.className = "btn";
+    details.textContent = "বিস্তারিত";
+    details.style.margin = "0";
+    details.style.padding = "7px 10px";
+    details.addEventListener("click", () => showDetails(p));
+
+    item.appendChild(serial);
+    item.appendChild(infoBox);
+    item.appendChild(details);
+
+    // অ্যাডমিনের সম্পাদনা ও মুছে ফেলার ব্যবস্থা
     if (currentUser) {
       const edit = document.createElement("button");
       edit.type = "button";
       edit.className = "btn";
       edit.textContent = "সম্পাদনা";
+      edit.style.margin = "0";
       edit.addEventListener("click", () => editPerson(p));
 
       const del = document.createElement("button");
       del.type = "button";
       del.className = "btn red";
       del.textContent = "মুছুন";
+      del.style.margin = "0";
       del.addEventListener("click", () => deletePerson(p));
 
-      item.append(edit, del);
+      item.appendChild(edit);
+      item.appendChild(del);
     }
 
     list.appendChild(item);
   });
 }
+
 
 function showDetails(p) {
   $("personTitle").textContent = p.name || "নাম দেওয়া হয়নি";
