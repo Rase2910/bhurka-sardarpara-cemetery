@@ -19,9 +19,37 @@ header{text-align:center}
 nav{display:flex;justify-content:center;gap:15px;flex-wrap:wrap}
 nav a{color:white;text-decoration:none}
 .hero{
-  text-align:center;padding:38px 15px;
-  background:linear-gradient(135deg,#dcefd9,#fffdf2)
+  position:relative;
+  text-align:center;
+  padding:55px 15px;
+  min-height:300px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  transition:background-image 0.5s ease;
+  color:white;
 }
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.55);
+}
+.hero h1,.hero p,.hero a{
+  position:relative;
+  z-index:1;
+}
+.hero h1{
+  color:white;
+}
+.hero p{
+  max-width:700px;
+}
+
 h1,h2,h3{color:#14532d}
 .hero h1{font-size:clamp(26px,5vw,40px)}
 main{max-width:950px;margin:auto;padding:16px}
@@ -66,7 +94,7 @@ footer{text-align:center}
   </nav>
 </header>
 
-<div class="hero">
+ <div class="hero">
   <h1>ভূরকা সরদারপাড়া কবরস্থান</h1>
   <p>কবরস্থানের মর্যাদা, পরিচ্ছন্নতা ও সুষ্ঠু ব্যবস্থাপনায় আমাদের সম্মিলিত উদ্যোগ।</p>
   <a class="btn" href="#people">মরহুমদের তালিকা</a>
@@ -847,7 +875,26 @@ $("logoutBtn").addEventListener("click", async () => {
     message("লগআউট করা যায়নি। আবার চেষ্টা করুন।");
   }
 });
-  
+// কবরস্থানের ছবির স্লাইডশো
+const hero = document.querySelector(".hero");
+
+const cemeteryPhotos = [
+  "images/memorial-1.jpg",
+  "images/memorial-2.jpg",
+  "images/memorial-3.jpg"
+];
+
+let photoIndex = 0;
+
+function changeCemeteryPhoto() {
+  hero.style.backgroundImage =
+    `linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url("${cemeteryPhotos[photoIndex]}")`;
+
+  photoIndex = (photoIndex + 1) % cemeteryPhotos.length;
+}
+
+changeCemeteryPhoto();
+setInterval(changeCemeteryPhoto, 4000);  
       
 </script>
 </body>
