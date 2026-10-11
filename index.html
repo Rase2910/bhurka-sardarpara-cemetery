@@ -879,22 +879,34 @@ $("logoutBtn").addEventListener("click", async () => {
 const hero = document.querySelector(".hero");
 
 const cemeteryPhotos = [
-  "images/memorial-1.jpg",
-  "images/memorial-2.jpg",
-  "images/memorial-3.jpg"
+  "./images/memorial-1.jpg",
+  "./images/memorial-2.jpg",
+  "./images/memorial-3.jpg"
 ];
 
 let photoIndex = 0;
 
 function changeCemeteryPhoto() {
-  hero.style.backgroundImage =
-    `linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url("${cemeteryPhotos[photoIndex]}")`;
+  const photo = cemeteryPhotos[photoIndex];
+  const img = new Image();
 
+  img.onload = function () {
+    hero.style.backgroundImage =
+      `linear-gradient(rgba(0,0,0,0.30), rgba(0,0,0,0.30)), url("${photo}")`;
+  };
+
+  img.onerror = function () {
+    console.error("ছবি লোড হয়নি:", photo);
+    hero.style.backgroundImage = "none";
+    hero.style.backgroundColor = "#14532d";
+  };
+
+  img.src = photo;
   photoIndex = (photoIndex + 1) % cemeteryPhotos.length;
 }
 
 changeCemeteryPhoto();
-setInterval(changeCemeteryPhoto, 4000);  
+setInterval(changeCemeteryPhoto, 4000); 
       
 </script>
 </body>
