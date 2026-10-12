@@ -37,7 +37,7 @@ nav a{color:white;text-decoration:none}
   content:"";
   position:absolute;
   inset:0;
-  background:rgba(0,0,0,0.55);
+  background:rgba(0,0,0,0.10);
 }
 .hero h1,.hero p,.hero a{
   position:relative;
@@ -96,12 +96,6 @@ footer{text-align:center}
 
  <div class="hero">
   <h1>ভূরকা সরদারপাড়া কবরস্থান</h1>
-  <p>কবরস্থানের মর্যাদা, পরিচ্ছন্নতা ও সুষ্ঠু ব্যবস্থাপনায় আমাদের সম্মিলিত উদ্যোগ।</p>
-  <a class="btn" href="#people">মরহুমদের তালিকা</a>
-  <a class="btn" target="_blank" rel="noopener"
-     href="https://www.google.com/maps?q=24.087004,88.916529">
-    📍 Google Maps
-  </a>
 </div>
 
 <main>
@@ -881,7 +875,10 @@ const hero = document.querySelector(".hero");
 const cemeteryPhotos = [
   "./images/memorial-1.jpg.jpeg",
   "./images/memorial-2.jpg.jpeg",
-  "./images/memorial-3.jpg.jpeg"
+  "./images/memorial-3.jpg.jpeg",
+  "./images/memorial-4.jpg.jpeg",
+  "./images/memorial-5.jpg.jpeg",
+  "./images/memorial-6.jpg.jpeg"
 ];
 
 let photoIndex = 0;
@@ -892,7 +889,7 @@ function changeCemeteryPhoto() {
 
   img.onload = function () {
     hero.style.backgroundImage =
-      `linear-gradient(rgba(0,0,0,0.30), rgba(0,0,0,0.30)), url("${photo}")`;
+     `linear-gradient(rgba(0,0,0,0.05), rgba(0,0,0,0.05)), url("${photo}")`;
   };
 
   img.onerror = function () {
