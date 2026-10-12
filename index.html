@@ -18,7 +18,6 @@
 <meta name="robots" content="index, follow">
 
 <meta name="keywords" content="ভূরকা সরদারপাড়া কবরস্থান, ভুরকাপাড়া কবরস্থান, Bhurka Sardarpara Cemetery, Daulatpur Kushtia Cemetery">
-
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700;800&display=swap');
 
@@ -255,8 +254,27 @@ label {
   border-radius: 9px;
 }
 
+#peopleList {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  align-items: start;
+}
+
 #peopleList > div {
+  min-width: 0;
+  margin: 0 !important;
   transition: border-color .2s, box-shadow .2s;
+}
+
+#peopleList > div > div:first-child {
+  flex-wrap: wrap;
+}
+
+@media (max-width: 800px) {
+  #peopleList {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 #peopleList > div:hover {
@@ -281,6 +299,10 @@ footer a {
 }
 
 @media (max-width: 600px) {
+  #peopleList {
+    grid-template-columns: 1fr;
+  }
+
   header {
     padding: 18px 12px;
   }
@@ -324,9 +346,6 @@ footer a {
     transition-duration: .01ms !important;
   }
 }
-</style>
-```
-
 </style>
 </head>
 
@@ -587,7 +606,7 @@ const $ = id => document.getElementById(id);
 
 let currentUser = null;
 let people = [];
-  const pageSize = 10;
+  const pageSize = 9;
 let currentPage = 1;
 function parseDeathDate(value) {
   if (!value) return null;
@@ -1169,4 +1188,3 @@ setInterval(changeCemeteryPhoto, 4000);
 </script>
 </body>
 </html>
-
