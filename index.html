@@ -346,6 +346,33 @@ footer a {
     transition-duration: .01ms !important;
   }
 }
+  .search-filters {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1.2fr;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.search-filters .field {
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  padding: 10px 8px;
+  font-size: 14px;
+}
+
+@media (max-width: 600px) {
+  .search-filters {
+    grid-template-columns: 1.6fr 0.8fr 1.1fr;
+    gap: 5px;
+  }
+
+  .search-filters .field {
+    padding: 9px 5px;
+    font-size: 12px;
+  }
+}
 </style>
 </head>
 
@@ -403,43 +430,30 @@ footer a {
       ডান পাশের আইকনে চাপ দিয়ে বিস্তারিত দেখুন।
     </p>
 
-    <input
-      id="search"
-      class="field"
-      type="search"
-      placeholder="মৃত ব্যক্তির নাম বা পিতার নাম লিখুন"
-    >
+   <div class="search-filters">
+  <input id="search" class="field"
+    type="search" placeholder="নাম / পিতার নাম">
 
-    <div style="display:flex;gap:8px;flex-wrap:wrap;">
-      <input
-        id="filterYear"
-        class="field"
-        type="text"
-        inputmode="numeric"
-        placeholder="বছর লিখুন, যেমন ২০১৯"
-        style="flex:1;min-width:140px;"
-      >
+  <input id="filterYear" class="field"
+    type="text" inputmode="numeric"
+    placeholder="বছর">
 
-      <select
-        id="filterMonth"
-        class="field"
-        style="flex:1;min-width:140px;"
-      >
-        <option value="">সব মাস</option>
-        <option value="01">জানুয়ারি</option>
-        <option value="02">ফেব্রুয়ারি</option>
-        <option value="03">মার্চ</option>
-        <option value="04">এপ্রিল</option>
-        <option value="05">মে</option>
-        <option value="06">জুন</option>
-        <option value="07">জুলাই</option>
-        <option value="08">আগস্ট</option>
-        <option value="09">সেপ্টেম্বর</option>
-        <option value="10">অক্টোবর</option>
-        <option value="11">নভেম্বর</option>
-        <option value="12">ডিসেম্বর</option>
-      </select>
-    </div>
+  <select id="filterMonth" class="field">
+    <option value="">সব মাস</option>
+    <option value="01">জানুয়ারি</option>
+    <option value="02">ফেব্রুয়ারি</option>
+    <option value="03">মার্চ</option>
+    <option value="04">এপ্রিল</option>
+    <option value="05">মে</option>
+    <option value="06">জুন</option>
+    <option value="07">জুলাই</option>
+    <option value="08">আগস্ট</option>
+    <option value="09">সেপ্টেম্বর</option>
+    <option value="10">অক্টোবর</option>
+    <option value="11">নভেম্বর</option>
+    <option value="12">ডিসেম্বর</option>
+  </select>
+</div>
 
     <p id="status">তথ্য লোড হচ্ছে...</p>
 
