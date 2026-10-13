@@ -444,9 +444,11 @@ footer a {
   <input id="search" class="field"
     type="search" placeholder="নাম / পিতার নাম">
 
-  <input id="filterYear" class="field"
-    type="text" inputmode="numeric"
-    placeholder="বছর">
+ 
+<input id="filterYear" class="field"
+type="text" inputmode="numeric"
+placeholder="বছর: 1990-2000">
+
 
   <select id="filterMonth" class="field">
     <option value="">সব মাস</option>
@@ -734,9 +736,34 @@ function getFilteredPeople() {
       bnDigits.indexOf(digit)
     );
 
-  const selectedYear = yearText
-    ? Number(convert(yearText))
-    : null;
+  
+let startYear = null;
+let endYear = null;
+
+if (yearText) {
+  const years = convert(yearText)
+    .split(/\s*[-–—]\s*/)
+    .map(Number);
+
+  if (
+    years.length === 1 &&
+    Number.isInteger(years[0]) &&
+    years[0] > 0
+  ) {
+    startYear = years[0];
+    endYear = years[0];
+  } else if (
+    years.length === 2 &&
+    years.every(y => Number.isInteger(y) && y > 0) &&
+    years[0] <= years[1]
+  ) {
+    startYear = years[0];
+    endYear = years[1];
+  } else {
+    return people.filter(() => false);
+  }
+}
+
 
   return people
     .filter(p => {
@@ -749,9 +776,14 @@ function getFilteredPeople() {
 
       const date = parseDeathDate(p.death);
 
-      if (selectedYear && (!date || date.year !== selectedYear)) {
-        return false;
-      }
+      
+if (
+  yearText &&
+  (!date || date.year < startYear || date.year > endYear)
+) {
+  return false;
+}
+
 
       if (monthText && (!date || date.month !== Number(monthText))) {
         return false;
