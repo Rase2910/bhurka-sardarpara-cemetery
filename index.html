@@ -373,6 +373,55 @@ footer a {
     font-size: 12px;
   }
 }
+  
+/* Navigation menu - cemetery green and gold theme */
+header nav {
+  gap: 10px;
+  margin-top: 20px;
+}
+
+header nav a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 9px 16px;
+  border: 1px solid rgba(214, 181, 109, 0.65);
+  border-radius: 12px;
+  background: #14532d;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 15px;
+  text-decoration: none;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+  transition: background 0.2s ease,
+              color 0.2s ease,
+              transform 0.2s ease,
+              box-shadow 0.2s ease;
+}
+
+header nav a:hover,
+header nav a:focus-visible {
+  background: #d6b56d;
+  color: #173b25;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
+}
+
+header nav a:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 600px) {
+  header nav {
+    gap: 7px;
+  }
+
+  header nav a {
+    padding: 8px 11px;
+    font-size: 13px;
+  }
+}
+
 </style>
 </head>
 
@@ -381,10 +430,12 @@ footer a {
   <h2 style="color:white;margin:0">ভূরকা সরদারপাড়া কবরস্থান</h2>
   <div>ভুরকাপাড়া, মরিচা, দৌলতপুর, কুষ্টিয়া</div>
   <nav>
-    <a href="#about">পরিচিতি</a>
-    <a href="#people">মরহুমদের তালিকা</a>
-    <a href="#contact">যোগাযোগ</a>
-    <a href="#admin">অ্যাডমিন</a>
+   
+<a href="#about">🌿 কবরস্থান পরিচিতি</a>
+<a href="#people">📋 মরহুমদের তালিকা</a>
+<a href="#contact">☎ যোগাযোগ ও সেবাদানকারী</a>
+    <a href="#admin">🔐 অ্যাডমিন প্যানেল</a>
+
   </nav>
 </header>
 
