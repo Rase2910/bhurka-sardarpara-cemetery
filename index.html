@@ -374,9 +374,14 @@ footer a {
   }
 }
   
-/* Navigation menu - cemetery green and gold theme */
+
+/* Navigation menu - colorful cemetery theme */
 header nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 10px;
+  flex-wrap: wrap;
   margin-top: 20px;
 }
 
@@ -384,34 +389,64 @@ header nav a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 9px 16px;
-  border: 1px solid rgba(214, 181, 109, 0.65);
+  padding: 10px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
   border-radius: 12px;
-  background: #14532d;
   color: #ffffff;
   font-weight: 700;
   font-size: 15px;
   text-decoration: none;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
-  transition: background 0.2s ease,
-              color 0.2s ease,
+  box-shadow: 0 3px 9px rgba(0, 0, 0, 0.20);
+  transition: background-color 0.2s ease,
               transform 0.2s ease,
               box-shadow 0.2s ease;
 }
 
+/* ১ম মেনু: কবরস্থান পরিচিতি */
+header nav a:nth-child(1) {
+  background-color: #176B45;
+}
+
+/* ২য় মেনু: মরহুমদের তালিকা */
+header nav a:nth-child(2) {
+  background-color: #1769AA;
+}
+
+/* ৩য় মেনু: যোগাযোগ ও সেবাদানকারী */
+header nav a:nth-child(3) {
+  background-color: #9A5A12;
+}
+
+/* ৪র্থ মেনু: মরহুমের তথ্য জমা দিন */
+header nav a:nth-child(4) {
+  background-color: #6541A5;
+}
+
+/* মেনুতে চাপ দিলে বা ফোকাস করলে */
 header nav a:hover,
 header nav a:focus-visible {
-  background: #d6b56d;
-  color: #173b25;
+  filter: brightness(1.15);
   transform: translateY(-2px);
-  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 13px rgba(0, 0, 0, 0.25);
 }
 
 header nav a:active {
   transform: translateY(0);
 }
 
+/* মোবাইলের জন্য */
 @media (max-width: 600px) {
+  header nav {
+    gap: 7px;
+  }
+
+  header nav a {
+    padding: 9px 11px;
+    font-size: 13px;
+    border-radius: 10px;
+  }
+}
+
   header nav {
     gap: 7px;
   }
